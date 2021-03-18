@@ -1,0 +1,71 @@
+
+<!-- http://webacademy.se/fakestore/   -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="content">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+             
+        <ul class="navbar-nav  me-auto mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="browse.html">Visa varor</a> </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="order.html">Beställning</a> </li>
+               
+        </ul>
+           
+      </nav>
+
+
+    <h1 class="ms-3">Beställning</h1>
+
+    
+
+<!--
+Visa info om den valda produkten högst upp på sidan.Kunden behöver ange namn,telefon,e-post och leveransadress.
+Validera alla fältmed JavaScript. Visa lämpliga felmeddelanden.
+-->
+    
+
+    <div id="userInfo" class="ms-3">
+
+        <form action="">
+
+            
+            <label for="namebox" id="nameboxLabel">Name</label> <br>
+            <input type="text" id="namebox"> <br>
+            <label for="phonebox" id="phoneboxLabel">Telefon</label> <br>
+            <input type="text" id="phonebox"> <br>  
+            <label for="emailbox" id="emailboxLabel">Emejl</label> <br>
+            <input type="email" id="emailbox"> <br> 
+            <br>
+            <div>Leveransadress</div>
+            <label for="streetbox" id="streetboxLabel">Gata</label> <br>
+            <input type="text" id="streetbox"> <br> 
+            <label for="postalbox" id="postalboxLabel">Postnummer och postort</label> <br>
+            <input type="text" id="postalbox"> <br> 
+            <br>
+            <!-- type="submit" gör nån sorters refresh på sidan och konsolutskriften blinkar-->
+            <input type="button" value="Skicka" id="submit">
+    
+    
+        </form>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+    <script src="order.js"></script>
+   
+    
+</body>
+</html>

@@ -1,0 +1,56 @@
+body{
+    background-color: #dfe0dcff;
+}
+
+.product{
+    margin: 5px;
+    padding: 10px;
+    border: black;
+}
+
+.product:hover{
+    background-color: #d1d3c4ff;
+}
+
+.product-image{
+    padding: 0.25rem;
+    border: 2px solid #d1d3c4ff;
+    max-width: 100%;
+    height: auto;
+}
+
+.product-name{
+    font-weight: bold;
+    color: #351431ff;
+    display: block;
+}
+
+.product-descr{
+    font-style: italic;
+    color: #775253ff;
+    display: block;
+}
+
+.product-price{
+    color: #775253ff;
+    font-variant:initial;
+}
+
+.product-category{
+    font-style: italic;
+    display: block;
+}
+
+.add-to-cart{
+    display: block;
+    background-color: #bdc696ff;
+    color: #775253ff;
+}
+
+/* CSS HEX 
+--dark-purple: #351431ff;
+--deep-taupe: #775253ff;
+--sage: #bdc696ff;
+--bone: #d1d3c4ff;
+--platinum: #dfe0dcff;
+*/
