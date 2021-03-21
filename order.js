@@ -1,6 +1,41 @@
 
 $(document).ready(function(){
 
+    
+    const storageProducts = JSON.parse(localStorage.getItem("products"));
+    
+    if(storageProducts.length == 0 || localStorage.getItem("products") === null){
+        console.log(storageProducts.length);
+        $("#productsInCart").html("<h2>Inga produkter i varukorgen.</h2>");
+    } else {
+        //$("#productsInCart").html("<h2>Produkter i varukorgen: </h2>")
+        populateCartTable(storageProducts);
+    };
+
+    function populateCartTable(array){
+        //let cartList = $("#productsList");
+        let tableStr = `<h2>Produkter i varukorgen: </h2>`;
+        tableStr += `<table class = "table thead-light table-striped" width=75%> <tr>
+            <th>Vara</th> <th>Pris</th> <th>Antal</th>
+        </tr> `;
+        let totalPrice = 0;
+        
+        for(i = 0; i < array.length; i++){
+            tableStr += `<tr> <td>` + array[i].title + `</td> 
+            <td>` + array[i].price + `</td> 
+            <td> <input type="number" value=1 size="3>" </input> </td> </tr> `;
+            totalPrice += (Number(array[i].price));
+        };
+        
+       
+        tableStr += `</table>`;
+        //console.log(tableStr);
+        tableStr += `<p class="text-end me-3"> Totalpris på ordern: ` + totalPrice + `</p>`;
+        $("#productsInCart").html(tableStr);
+  
+    };
+
+
     $("#submit").click(function(){
         let userName = $("#namebox").val();
         let phone = $("#phonebox").val();
@@ -8,14 +43,12 @@ $(document).ready(function(){
         let street = $("#streetbox").val();
         let postal = $("#postalbox").val();
 
-        // validera innan det lagras
 
         if(validateForm(userName, phone, email, street, postal)){
             alert("true :)");
             resetForm();
             saveUserInfo(userName, phone, email, street, postal);
         };                   
-
     });
 
     function validateForm(userName, phone, email, street, postal){

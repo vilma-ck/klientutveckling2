@@ -2,6 +2,7 @@ body{
     background-color: #dfe0dcff;
 }
 
+
 .product{
     margin: 5px;
     padding: 10px;
@@ -46,6 +47,8 @@ body{
     background-color: #bdc696ff;
     color: #775253ff;
 }
+
+
 
 /* CSS HEX 
 --dark-purple: #351431ff;
