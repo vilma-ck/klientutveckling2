@@ -1,5 +1,12 @@
 $(document).ready(function(){
 
+ 
+   
+
+
+
+  // sen fixa array i local storge
+
     if(localStorage.getItem("name") == "" || localStorage.getItem("name") === null){
       $("#welcomeH2").html("Välkommen gäst!");
     }else {

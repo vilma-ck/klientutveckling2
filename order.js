@@ -1,6 +1,8 @@
 
 $(document).ready(function(){
 
+    // skapa och anropa en load-funktion direkt
+
     
     const storageProducts = JSON.parse(localStorage.getItem("products"));
     
@@ -22,8 +24,8 @@ $(document).ready(function(){
         
         for(i = 0; i < array.length; i++){
             tableStr += `<tr> <td>` + array[i].title + `</td> 
-            <td>` + array[i].price + `</td> 
-            <td> <input type="number" value=1 size="3>" </input> </td> </tr> `;
+            <td class=".priceCell" >` + array[i].price + `</td> 
+            <td> <input type="number" value=1 size="3" min="1" class="productNo"> </input> </td> </tr> `;
             totalPrice += (Number(array[i].price));
         };
         
@@ -35,6 +37,15 @@ $(document).ready(function(){
   
     };
 
+    $(".productNo").change(function(){
+        let productIndex = $(this).parents("tr").find(".priceCell").text();
+        console.log($(this).parents("td").siblings(".priceCell").children());
+        console.log(productIndex.tagName);
+        console.dir(productIndex);
+        // inner html när man väl kommer till rätt elem (via parent, children[typ 1])
+        //let price = this.
+    });
+    //https://www.semicolonworld.com/question/5305/how-to-get-value-from-r-fn-init-jquery-selector-context
 
     $("#submit").click(function(){
         let userName = $("#namebox").val();
@@ -45,9 +56,11 @@ $(document).ready(function(){
 
 
         if(validateForm(userName, phone, email, street, postal)){
-            alert("true :)");
-            resetForm();
             saveUserInfo(userName, phone, email, street, postal);
+            alert("Tack för din beställning! :)"); 
+            // bör vara en confirmation page, visa kanske sammanställning av beställning och tack och postinfo
+            resetForm();
+            
         };                   
     });
 
