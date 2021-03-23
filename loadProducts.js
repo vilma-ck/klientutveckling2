@@ -31,6 +31,8 @@ $(document).ready(function(){
         };      
         
         $("#output").html(output);
+        
+        $(".add-to-cart").click(addToCart());
     };
     
 });

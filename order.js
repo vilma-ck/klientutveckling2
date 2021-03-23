@@ -23,10 +23,19 @@ $(document).ready(function(){
         let totalPrice = 0;
         
         for(i = 0; i < array.length; i++){
+            let q = array[i].quantity;
+            let price = array[i].price;
+            let totalProductPrice = price;
+            
+            if(q > 1){
+                totalProductPrice = q * price;
+                price = totalProductPrice + `<br> (2 * ` + array[i].price + `)`;
+            } 
+            // ` + Number(q) +
             tableStr += `<tr> <td>` + array[i].title + `</td> 
-            <td class=".priceCell" >` + array[i].price + `</td> 
-            <td> <input type="number" value=1 size="3" min="1" class="productNo"> </input> </td> </tr> `;
-            totalPrice += (Number(array[i].price));
+            <td class=".priceCell" > ${price} </td> 
+            <td> <input type="number" value=${q}  size="3" min="1" class="productQuantity"> </input> </td> </tr> `;
+            totalPrice += (Number(totalProductPrice));
         };
         
        
@@ -37,15 +46,34 @@ $(document).ready(function(){
   
     };
 
+
+    /**
+     * Change quantity of product in cart
+     */
+
+    $("#productsInCart").on("click", "input.productQuantity", function(){
+        let id = $(this);
+        console.log(id);
+    })
+
     $(".productNo").change(function(){
+        let quantity = $(this).parent.value;
+        let price = $(this).parents("tr").find(".priceCell").text();
+        console.log(quantity);
+        console.log(price);
+        console.dir($(this));
+        /*
         let productIndex = $(this).parents("tr").find(".priceCell").text();
         console.log($(this).parents("td").siblings(".priceCell").children());
         console.log(productIndex.tagName);
         console.dir(productIndex);
+        */
         // inner html när man väl kommer till rätt elem (via parent, children[typ 1])
         //let price = this.
     });
     //https://www.semicolonworld.com/question/5305/how-to-get-value-from-r-fn-init-jquery-selector-context
+
+
 
     $("#submit").click(function(){
         let userName = $("#namebox").val();
@@ -64,6 +92,7 @@ $(document).ready(function(){
         };                   
     });
 
+   
     function validateForm(userName, phone, email, street, postal){
         if(userName == ""){
             alert("Namn måste vara ifyllt!")
