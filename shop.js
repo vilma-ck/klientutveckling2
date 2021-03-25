@@ -3,6 +3,7 @@ $(document).ready(function(){
  
   welcomeMessage();
   const cartArray = setupCartArray();
+  checkCartQuantity(cartArray);
   load();
 
 
@@ -12,7 +13,7 @@ $(document).ready(function(){
     }else {
       $("#welcomeH2").html("Välkommen " + localStorage.getItem("name") + "!");
     };
-  };
+  }
 
   function setupCartArray(){
     if(localStorage.getItem("products") === null){  
@@ -21,8 +22,14 @@ $(document).ready(function(){
     } 
     const array = JSON.parse(localStorage.getItem("products"));
     return array;
-  };
+  }
 
+  function checkCartQuantity(array){
+    let productsInCart = 0;
+    array.forEach((product) => productsInCart += (Number(product.quantity)));
+    console.log(productsInCart);
+    $("#quantityInCart").html(productsInCart);
+  }
 
   
 
@@ -34,7 +41,7 @@ $(document).ready(function(){
           if(xhr.readyState === 4 && xhr.status == 200){
               render(JSON.parse(xhr.responseText));
           }
-      };
+      }
   }
 
   function render(json){
@@ -45,7 +52,7 @@ $(document).ready(function(){
        
       for(i = 0; i < json.length; i++){
           output += `<div class="product col-md-3"> 
-              <img class="product-image rounded" src=" ` + json[i].image + `" alt="">
+              <img class="product-image rounded" src=" ` + json[i].image + `" alt="Bild på `+ json[i].title + `">
               <span class="product-name"> ` + json[i].title + `</span> 
               <span class="product-descr"> `+ json[i].description + `</span>
               <span class="product-price"> Pris: ` + json[i].price + `$ </span>
@@ -57,7 +64,7 @@ $(document).ready(function(){
       $("#output").html(output);
       $(".add-to-cart").click(addToCart);
       
-  };
+  }
 
     function addToCart(event){
       let products = JSON.parse(localStorage.getItem("products"));
@@ -84,11 +91,13 @@ $(document).ready(function(){
         console.log(product);
         products.push(product);
       };
-
+      let current = $("#quantityInCart").text();
+      console.log(current);
+      $("#quantityInCart").html(Number(current) + 1);
       console.log(products);
       localStorage.setItem("products", JSON.stringify(products));
       
-    };
+    }
 
 
 

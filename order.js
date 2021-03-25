@@ -12,13 +12,13 @@ $(document).ready(function(){
     } else {
         //$("#productsInCart").html("<h2>Produkter i varukorgen: </h2>")
         populateCartTable(storageProducts);
-    };
+    }
 
     function populateCartTable(array){
         //let cartList = $("#productsList");
         let tableStr = `<h2>Produkter i varukorgen: </h2>`;
         tableStr += `<table class = "table thead-light table-striped" width=75%> <tr>
-            <th>Vara</th> <th>Pris</th> <th>Antal</th>
+            <th>Vara</th> <th>Pris för en vara</th> <th>Totalt pris för vara</th> <th>Antal</th>
         </tr> `;
         let totalPrice = 0;
         
@@ -29,28 +29,51 @@ $(document).ready(function(){
             
             if(q > 1){
                 totalProductPrice = q * price;
-                price = totalProductPrice + `<br> (2 * ` + array[i].price + `)`;
             } 
             // ` + Number(q) +
             tableStr += `<tr> <td>` + array[i].title + `</td> 
-            <td class=".priceCell" > ${price} </td> 
+            <td class=".priceCell" > ${price} </td>
+            <td class=".priceCell" > ${totalProductPrice} </td> 
             <td> <input type="number" value=${q}  size="3" min="1" class="productQuantity"> </input> </td> </tr> `;
             totalPrice += (Number(totalProductPrice));
         };
         
-       
         tableStr += `</table>`;
         //console.log(tableStr);
-        tableStr += `<p class="text-end me-3"> Totalpris på ordern: ` + totalPrice + `</p>`;
+        //tableStr += ;
         $("#productsInCart").html(tableStr);
+        $("#totalPriceSpace").html(`<p class="text-end me-3"> Totalpris på ordern: ` + totalPrice + `</p>`);
+        $(".productQuantity").click(changeQuantity);
   
-    };
+    }
 
 
-    /**
-     * Change quantity of product in cart
-     */
+    function changeQuantity(event){
+        let tableCell = event.target.parentElement;
+        let rowIndex = tableCell.parentElement.rowIndex;
+        let newQuantity = tableCell.children[0].value;
+        let price = tableCell.previousElementSibling.previousElementSibling.innerText;
+        let totalPrice = $("#totalPriceSpace").innerText;
+        let oldPrice =  tableCell.previousElementSibling.value;
+        let newPrice = newQuantity*price;
+    
+        console.log("index " + rowIndex);
 
+        console.log("old price " + oldPrice);
+
+        // sätt totalpris för enskild produkt och totalsumma för order
+        tableCell.previousElementSibling.innerText = newPrice;
+
+        // spara nya kvantitet i local storage
+        storageProducts[rowIndex-1].quantity = newQuantity;
+        console.log(typeof(storageProducts[0]));
+        console.log(storageProducts);
+        localStorage.setItem("products", JSON.stringify(storageProducts));
+
+
+    }
+     
+/*
     $("#productsInCart").on("click", "input.productQuantity", function(){
         let id = $(this);
         console.log(id);
@@ -59,19 +82,21 @@ $(document).ready(function(){
     $(".productNo").change(function(){
         let quantity = $(this).parent.value;
         let price = $(this).parents("tr").find(".priceCell").text();
+      
         console.log(quantity);
         console.log(price);
         console.dir($(this));
-        /*
+        
         let productIndex = $(this).parents("tr").find(".priceCell").text();
         console.log($(this).parents("td").siblings(".priceCell").children());
         console.log(productIndex.tagName);
         console.dir(productIndex);
-        */
+    
         // inner html när man väl kommer till rätt elem (via parent, children[typ 1])
         //let price = this.
     });
-    //https://www.semicolonworld.com/question/5305/how-to-get-value-from-r-fn-init-jquery-selector-context
+   */
+
 
 
 
@@ -113,7 +138,7 @@ $(document).ready(function(){
         } else {
             return true;
         }
-    };
+    }
 
     function resetForm(){
         $("#nameboxLabel").html("Namn");
@@ -126,7 +151,7 @@ $(document).ready(function(){
         $("#streetbox").val("");
         $("#postalboxLabel").html("Postnummer och postort");
         $("#postalbox").val("");
-    };
+    }
     
 
     function saveUserInfo(userName, inPhone, inEmail, street, postal){
@@ -136,7 +161,7 @@ $(document).ready(function(){
         localStorage.setItem("email", inEmail);
         localStorage.setItem("street", street);
         localStorage.setItem("postal", postal);
-    };
+    }
 
 
 });
