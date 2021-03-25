@@ -116,6 +116,7 @@ $(document).ready(function(){
         if(validateForm(userName, phone, email, street, postal)){
             saveUserInfo(userName, phone, email, street, postal);
             alert("Tack för din beställning! :)"); 
+            window.location.href = "confirmation.html";
             // bör vara en confirmation page, visa kanske sammanställning av beställning och tack och postinfo
             resetForm();
             
