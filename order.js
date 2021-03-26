@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
    
     let storageProducts = JSON.parse(localStorage.getItem("products"));
@@ -8,7 +7,6 @@ $(document).ready(function(){
         console.log(storageProducts.length);
         $("#productsInCart").html("<h2>Inga produkter i varukorgen.</h2>");
     } else {
-        //$("#productsInCart").html("<h2>Produkter i varukorgen: </h2>")
         populateCartTable(storageProducts);
     }
 
@@ -19,7 +17,6 @@ $(document).ready(function(){
             <th>Vara</th> <th>Pris för en vara</th> <th>Totalt pris för vara</th> <th>Antal</th>
         </tr> `;
         
-        
         for(i = 0; i < array.length; i++){
             let q = array[i].quantity;
             let price = array[i].price;
@@ -28,7 +25,6 @@ $(document).ready(function(){
             if(q > 1){
                 totalProductPrice = q * price;
             } 
-            // ` + Number(q) +
             tableStr += `<tr> <td>` + array[i].title + `</td> 
             <td class=".priceCell" > ${price} </td>
             <td class=".priceCell" > ${totalProductPrice} </td> 
@@ -43,13 +39,11 @@ $(document).ready(function(){
         $("#totalPriceSpace").html(totalPrice);
         $(".productQuantity").click(changeQuantity);
         $(".removeProduct").click(removeProduct);
-  
     }
 
 
-
-
     function changeQuantity(event){
+        storageProducts = JSON.parse(localStorage.getItem("products"));
         let tableCell = event.target.parentElement;
         let rowIndex = tableCell.parentElement.rowIndex;
         let newQuantity = tableCell.children[0].value;
@@ -59,11 +53,6 @@ $(document).ready(function(){
         let priceChange = newPrice - oldPrice;
 
         totalPrice += priceChange; 
-       
-
-        console.log("priceCHange" + priceChange);
-        console.log("totalPrice " + totalPrice);
-        
 
         // sätt totalpris för enskild produkt och totalsumma för order
         tableCell.previousElementSibling.innerText = newPrice;
@@ -73,10 +62,6 @@ $(document).ready(function(){
         storageProducts[rowIndex-1].quantity = newQuantity;
         
         localStorage.setItem("products", JSON.stringify(storageProducts));
-        storageProducts = JSON.parse(localStorage.getItem("products"));
-
-
-
     }
      
 
@@ -99,12 +84,6 @@ $(document).ready(function(){
         console.log(storageProducts);
         localStorage.setItem("products", JSON.stringify(storageProducts));
         storageProducts = JSON.parse(localStorage.getItem("products"));
-
     }
-
-
-
-
-   
 
 });

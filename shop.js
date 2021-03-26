@@ -63,21 +63,15 @@ $(document).ready(function(){
 
       $("#output").html(output);
       $(".add-to-cart").click(addToCart);
-      
   }
 
     function addToCart(event){
       let products = JSON.parse(localStorage.getItem("products"));
-      console.log("added");
       let productId = event.target.parentElement;
-      // title
-      console.log(productId.children[1].innerText);
-
       let newItem = true;
       
       products.forEach(element => { 
         if(element.title == productId.children[1].innerText){
-          console.log("dublett");
           element.quantity ++;
           newItem = false;
         }         
@@ -85,27 +79,12 @@ $(document).ready(function(){
   
       if(newItem){
         let priceText = productId.children[3].innerText;
-        console.log(priceText.substring(6, priceText.length-1));
-        console.dir(productId);
         const product = {title: productId.children[1].innerText, price: priceText.substring(6, priceText.length-1), quantity: 1 };
-        console.log(product);
         products.push(product);
       };
       let current = $("#quantityInCart").text();
-      console.log(current);
       $("#quantityInCart").html(Number(current) + 1);
-      console.log(products);
-      localStorage.setItem("products", JSON.stringify(products));
-      
+      localStorage.setItem("products", JSON.stringify(products)); 
     }
 
-
-
   });
-
-  // https://github.com/WebDevSimplified/Introduction-to-Web-Development/blob/master/Introduction%20to%20JavaScript/Lesson%201/store.js
-// https://www.youtube.com/watch?v=YeFzkC2awTM&t=24s
-
-// https://www.youtube.com/watch?v=DIVfDZZeGxM&t=132s (23 sek)
-//https://github.com/bradtraversy/bookmarker/blob/master/js/main.js
-
