@@ -25,12 +25,20 @@
     <h1 class="ms-3">Bekräftelse</h1>
     <h2 class="ms-3" id="welcomeH2">Bekräftelse</h2>
 
-    <p class="ms-3" >Tack för din beställning!</p>
+    <p id="thankYou" class="ms-3" >Tack för din beställning!</p>
     <p class="ms-3" >Välkommen åter :) </p>
 
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function(){   
+          const name = localStorage.getItem("name");
+          document.getElementById("thankYou").innerHTML = "Tack för din beställning, " + name + "!";
+          });
+
+    </script>
   
     
     
