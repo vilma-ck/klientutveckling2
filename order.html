@@ -9,36 +9,25 @@
 
 <body class="content">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-             
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">  
         <ul class="navbar-nav  me-auto mb-lg-0">
           <li class="nav-item">
             <a class="nav-link" href="index.html">Visa varor</a> </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="order.html">Beställning</a> </li>
-               
         </ul>
-           
       </nav>
 
       
     <h1 class="ms-3">Beställning</h1>
 
-
     <div id="productsInCart">    </div>
     <span class="text-end me-3" id="totalPriceLabel"></span> 
     <span class="text-end me-3" id="totalPriceSpace"></span>
 
-<!--
-Validera alla fältmed JavaScript. Visa lämpliga felmeddelanden.
--->
-    
-
     <div id="userInfo" class="ms-3">
 
-        <form action="">
-
-            
+        <form action="#">
             <label for="namebox" id="nameboxLabel">Name</label> <br>
             <input type="text" id="namebox"> <br>
             <label for="phonebox" id="phoneboxLabel">Telefon</label> <br>
@@ -52,10 +41,7 @@ Validera alla fältmed JavaScript. Visa lämpliga felmeddelanden.
             <label for="postalbox" id="postalboxLabel">Postnummer och postort</label> <br>
             <input type="text" id="postalbox"> <br> 
             <br>
-            <!-- type="submit" gör nån sorters refresh på sidan och konsolutskriften blinkar-->
             <input type="button" value="Skicka" id="submit">
-    
-    
         </form>
 
     </div>
@@ -64,6 +50,5 @@ Validera alla fältmed JavaScript. Visa lämpliga felmeddelanden.
     <script src="order.js"></script>
     <script src="validate.js"></script>
    
-    
 </body>
 </html>
